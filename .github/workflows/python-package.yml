@@ -22,8 +22,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 pytest
-    - name: Install xmllint
+        python -m pip install flake8 pytest mypy-protobuf
+    - name: Install protobuf-compiler
       run: sudo apt-get install protobuf-compiler
     - name: Run Makefile
       env:
