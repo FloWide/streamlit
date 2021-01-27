@@ -35,7 +35,7 @@ pip install --upgrade streamlit
 streamlit version
 ```
 
-...and then verify that the version number printed is `0.75.0-fw`.
+...and then verify that the version number printed is `0.75.0+fw.1`.
 
 **Try reproducing the issue now.** If not fixed, keep reading on.
 
