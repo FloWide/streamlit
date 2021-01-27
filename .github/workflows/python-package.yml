@@ -26,6 +26,8 @@ jobs:
         python -m pip install --upgrade cython
     - name: Install protobuf-compiler
       run: sudo apt-get install protobuf-compiler
+    - name: Install cmake
+      run: sudo apt-get install cmake
     - name: Run Makefile
       env:
         TOKEN: ${{ secrets.TOKEN }}
