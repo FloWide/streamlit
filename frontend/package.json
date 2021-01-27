@@ -1,6 +1,6 @@
 {
   "name": "streamlit-browser",
-  "version": "0.75.0",
+  "version": "0.75.0-fw",
   "private": true,
   "homepage": "./",
   "scripts": {
