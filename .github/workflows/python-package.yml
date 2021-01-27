@@ -39,10 +39,10 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: release_files
-        path: dist
+        path: lib/dist
     - name: Zip project # This would actually build your project, using zip for an example artifact
       run: |
-        zip -r release_files.zip dist
+        zip -r release_files.zip lib/dist
     - name: Get Short Hash
       id: slug
       run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
