@@ -5,8 +5,11 @@ name: Python package for experimental
 
 on:
   push:
-    branches:
-      - refs/tags/experimental/*
+    tags:
+      - 'experimental/*'
+  create:
+    tags:
+      - 'experimental/*'
 
 jobs:
   build:
@@ -51,8 +54,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: latest/${{steps.slug.outputs.sha8 }}
-          release_name: Release latest/${{steps.slug.outputs.sha8}}
+          tag_name: ${{ github.ref }}
+          release_name: Experimental release ${{ github.ref }}
           draft: true
           prerelease: false
       - name: Upload a Release Asset
