@@ -285,6 +285,8 @@ export class App extends PureComponent<Props, State> {
   handleMessage = (msgProto: ForwardMsg): void => {
     // We don't have an immutableProto here, so we can't use
     // the dispatchOneOf helper
+    console.log("MESSAGE_FROM_WEBSOCKET:")
+    console.log(msgProto)
     const dispatchProto = (obj: any, name: string, funcs: any): any => {
       const whichOne = obj[name]
       if (whichOne in funcs) {
