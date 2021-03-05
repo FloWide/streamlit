@@ -145,8 +145,6 @@ export class Streamlit {
 
   /** Receive a ForwardMsg from the Streamlit app */
   private static onMessageEvent = (event: MessageEvent): void => {
-    console.log("ON_MESSAGE_EVENT:");
-    console.log(event);
     const type = event.data["type"];
     switch (type) {
       case Streamlit.RENDER_EVENT:
@@ -160,9 +158,6 @@ export class Streamlit {
    * StreamlitRenderEvent.
    */
   private static onRenderMessage = (data: any): void => {
-    console.log("ON_RENDER_MESSAGE:");
-    console.log(data);
-
     let args = data["args"];
     if (args == null) {
       console.error(
@@ -208,9 +203,6 @@ export class Streamlit {
 
   /** Post a message to the Streamlit app. */
   private static sendBackMsg = (type: string, data?: any): void => {
-    console.log("PARENT_POST_MESSAGE:");
-    console.log(type);
-    console.log(data);
     window.parent.postMessage(
       {
         isStreamlitMessage: true,

@@ -303,12 +303,11 @@ export class App extends PureComponent<Props, State> {
           this.handleSessionStateChanged(msg),
         sessionEvent: (evtMsg: SessionEvent) =>
           this.handleSessionEvent(evtMsg),
-        delta: (deltaMsg: Delta) => {
+        delta: (deltaMsg: Delta) =>
           this.handleDeltaMsg(
             deltaMsg,
             msgProto.metadata as ForwardMsgMetadata
-          )
-        },
+          ),
         pageConfigChanged: (pageConfig: PageConfig) =>
           this.handlePageConfigChanged(pageConfig),
         pageInfoChanged: (pageInfo: PageInfo) =>
