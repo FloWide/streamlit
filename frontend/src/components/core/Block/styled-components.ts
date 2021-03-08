@@ -45,13 +45,6 @@ export const StyledElementContainer = styled.div<StyledElementContainerProps>(
       },
       overflow: "visible",
     },
-
-    ...(isStale
-      ? {
-          opacity: 0.33,
-          transition: "opacity 1s ease-in 0.5s",
-        }
-      : {}),
   })
 )
 
