@@ -380,8 +380,8 @@ export class ReportRoot {
 
           if (
             oldElement &&
-            oldElement.element.componentInstance?.multi_send_enabled &&
-            element.componentInstance?.multi_send_enabled
+            oldElement.element.componentInstance?.multiSendEnabled &&
+            element.componentInstance?.multiSendEnabled
           ) {
             const deltaPathStr = JSON.stringify(deltaPath)
             if (this.customComponentsRefreshed.has(deltaPathStr)) {
