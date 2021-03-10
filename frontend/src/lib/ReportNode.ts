@@ -380,20 +380,23 @@ export class ReportRoot {
 
           if (
             oldElement &&
-            this.customComponentsRefreshed.has(JSON.stringify(deltaPath))
+            oldElement.element.componentInstance?.multi_send_enabled &&
+            element.componentInstance?.multi_send_enabled
           ) {
-            const oldJson = oldElement.element.componentInstance?.jsonArgs
-            if (oldJson && element.componentInstance?.jsonArgs) {
+            const deltaPathStr = JSON.stringify(deltaPath)
+            if (
+              this.customComponentsRefreshed.has(deltaPathStr)
+            ) {
               const json = JSON.parse(element.componentInstance?.jsonArgs)
-              const old = JSON.parse(oldJson)
+              const old =
+                JSON.parse(oldElement.element.componentInstance?.jsonArgs)
               element.componentInstance.jsonArgs = JSON.stringify(
                 this.merge(old, json)
               )
+            } else {
+              this.customComponentsRefreshed.add(deltaPathStr)
             }
           }
-          this.customComponentsRefreshed = this.customComponentsRefreshed.add(
-            JSON.stringify(deltaPath)
-          )
 
           if (componentName != null) {
             MetricsManager.current.incrementCustomComponentCounter(

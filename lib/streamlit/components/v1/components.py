@@ -176,6 +176,7 @@ And if you're using Streamlit Sharing, add "pyarrow" to your requirements.txt.""
 
         def marshall_component(element: Element) -> Union[Any, Type[NoValue]]:
             element.component_instance.component_name = self.name
+            element.component_instance.multi_send_enabled = self.component_type is not None
             if self.url is not None:
                 element.component_instance.url = self.url
 

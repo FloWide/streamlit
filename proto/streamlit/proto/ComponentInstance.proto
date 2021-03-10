@@ -36,6 +36,9 @@ message ComponentInstance {
   // but while testing, a user can e.g. point this to a local node server
   // that they're developing their component in.
   string url = 5;
+
+  // The component enables multi-send data.
+  bool multi_send_enabled = 6;
 }
 
 message SpecialArg {
