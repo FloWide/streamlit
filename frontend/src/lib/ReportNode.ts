@@ -384,12 +384,11 @@ export class ReportRoot {
             element.componentInstance?.multi_send_enabled
           ) {
             const deltaPathStr = JSON.stringify(deltaPath)
-            if (
-              this.customComponentsRefreshed.has(deltaPathStr)
-            ) {
+            if (this.customComponentsRefreshed.has(deltaPathStr)) {
               const json = JSON.parse(element.componentInstance?.jsonArgs)
-              const old =
-                JSON.parse(oldElement.element.componentInstance?.jsonArgs)
+              const old = JSON.parse(
+                oldElement.element.componentInstance?.jsonArgs
+              )
               element.componentInstance.jsonArgs = JSON.stringify(
                 this.merge(old, json)
               )
