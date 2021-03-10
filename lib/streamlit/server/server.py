@@ -402,8 +402,9 @@ class Server(object):
             while not self._must_stop.is_set():
 
                 if self._state == State.WAITING_FOR_FIRST_BROWSER:
-                    yield self._has_connection.wait()
-                    continue
+                    yield tornado.gen.WaitIterator(
+                        self._must_stop.wait(), self._has_connection.wait()
+                    ).next()
 
                 elif self._state == State.ONE_OR_MORE_BROWSERS_CONNECTED:
                     self._need_send_data.clear()
@@ -428,8 +429,9 @@ class Server(object):
                     yield tornado.gen.sleep(0.01)
 
                 elif self._state == State.NO_BROWSERS_CONNECTED:
-                    yield self._has_connection.wait()
-                    continue
+                    yield tornado.gen.WaitIterator(
+                        self._must_stop.wait(), self._has_connection.wait()
+                    ).next()
 
                 else:
                     # Break out of the thread loop if we encounter any other state.
@@ -523,10 +525,8 @@ Please report this bug at https://github.com/streamlit/streamlit/issues.
         self._set_state(State.STOPPING)
         if from_signal:
             self._ioloop.add_callback_from_signal(self._must_stop.set)
-            self._ioloop.add_callback_from_signal(self._has_connection.notify_all)
         else:
             self._ioloop.add_callback(self._must_stop.set)
-            self._ioloop.add_callback(self._has_connection.notify_all)
 
     def _on_stopped(self):
         """Called when our runloop is exiting, to shut down the ioloop.
