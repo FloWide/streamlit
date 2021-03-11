@@ -128,7 +128,7 @@ def compose_deltas(old_delta, new_delta):
     if new_delta_type == "new_element":
         element_type = new_delta.new_element.WhichOneof("type")
         if (element_type == "component_instance" and
-                element_type.component_instance.multi_send_enabled and
+                new_delta.new_element.component_instance.multi_send_enabled and
                 old_delta.WhichOneof("type") == "new_element" and
                 old_delta.new_element.WhichOneof("type") == "component_instance" and
                 old_delta.new_element.component_instance.multi_send_enabled):
